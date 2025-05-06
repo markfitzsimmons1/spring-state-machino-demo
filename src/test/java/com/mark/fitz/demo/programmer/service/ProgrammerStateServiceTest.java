@@ -102,6 +102,11 @@ class ProgrammerStateServiceTest {
         programmerStateService.attemptToComposeSelfV3(fetchedMark);
         fetchedMark = programmerService.getProgrammer(markId);
         assertThat(fetchedMark.getState()).isEqualTo(StateV3.UNCONTROLLABLE_SOBBING);
+
+        // Flow to writing code
+        fetchedMark.setStressed(false);
+        programmerStateService.attemptToComposeSelfV3(fetchedMark);
+        assertThat(fetchedMark.getState()).isEqualTo(StateV3.WRITING_CODE);
     }
 
 }
