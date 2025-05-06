@@ -1,0 +1,23 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+<configuration>
+
+    <appender name = "stdout" class = "ch.qos.logback.core.ConsoleAppender">
+        <encoder class = "net.logstash.logback.encoder.LogstashEncoder">
+            <fieldNames>
+                <version>[ignore]</version>
+                <levelValue>[ignore]</levelValue>
+                <thread>[ignore]</thread>
+                <logger>[ignore]</logger>
+            </fieldNames>
+        </encoder>
+    </appender>
+
+    <logger name = "com.mark.fitz.demo" level = "INFO" />
+
+    <root level = "INFO">
+        <appender-ref ref = "stdout" />
+    </root>
+
+    <jmxConfigurator />
+
+</configuration>

@@ -59,7 +59,7 @@ class ProgrammerStateServiceTest {
         programmerStateService.finishedCodingV2(mark);
         Programmer fetchedMark = programmerService.getProgrammer(markId);
         assertThat(fetchedMark.getState()).isEqualTo(StateV2.IN_CODE_REVIEW);
-        programmerStateService.finishedCodeReviewV2(mark, phil);
+        programmerStateService.finishedCodeReviewV2(fetchedMark, phil);
         fetchedMark = programmerService.getProgrammer(markId);
         assertThat(fetchedMark.getState()).isEqualTo(StateV2.SATISFIED_WITH_WORK);
 
@@ -85,19 +85,23 @@ class ProgrammerStateServiceTest {
         assertThat(fetchedMark.getState()).isEqualTo(StateV3.SATISFIED_WITH_WORK);
 
         // Pick up new ticket
-        programmerStateService.pickUpNewTicket(fetchedMark);
+        programmerStateService.pickUpNewTicketV3(fetchedMark);
         fetchedMark = programmerService.getProgrammer(markId);
         assertThat(fetchedMark.getState()).isEqualTo(StateV3.WRITING_CODE);
 
         // Flow to Crying
-        mark.setState(StateV3.WRITING_CODE);
-        mark.setStressed(true);
-        programmerStateService.finishedCodingV3(mark);
+        fetchedMark.setStressed(true);
+        programmerStateService.finishedCodingV3(fetchedMark);
         fetchedMark = programmerService.getProgrammer(markId);
         assertThat(fetchedMark.getState()).isEqualTo(StateV3.IN_CODE_REVIEW);
         programmerStateService.finishedCodeReviewV3(mark, phil);
         fetchedMark = programmerService.getProgrammer(markId);
         assertThat(fetchedMark.getState()).isEqualTo(StateV3.CRYING_WITH_IMPOSTER_SYNDROME);
+
+        // Flow to Uncontrollable Sobbing
+        programmerStateService.attemptToComposeSelfV3(fetchedMark);
+        fetchedMark = programmerService.getProgrammer(markId);
+        assertThat(fetchedMark.getState()).isEqualTo(StateV3.UNCONTROLLABLE_SOBBING);
     }
 
 }

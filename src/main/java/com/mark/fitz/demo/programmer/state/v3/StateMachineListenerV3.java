@@ -83,7 +83,7 @@ public class StateMachineListenerV3 implements StateMachineListener<StateV3, Eve
     public void stateContext(StateContext context) {
         Programmer programmer = (Programmer) context.getExtendedState().getVariables().get(
                 Constants.PROGRAMMER);
-        if (programmer == null || context.getTarget() == null) {
+        if (programmer == null || context.getTarget() == null || context.getStage() != StateContext.Stage.STATE_ENTRY) {
             return;
         }
         programmer.setState((StateV3) context.getTarget().getId());

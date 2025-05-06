@@ -27,6 +27,12 @@ dependencies {
     implementation group: 'org.projectlombok', name: 'lombok', version: '1.18.34'
     annotationProcessor "org.projectlombok:lombok:1.18.34"
 
+    // SLF4J
+    implementation "org.slf4j:slf4j-api:2.0.17"
+    implementation group: 'org.slf4j', name: 'slf4j-simple', version: '2.0.17'
+    implementation group: 'org.slf4j', name: 'slf4j-api', version: '2.0.17'
+    implementation 'ch.qos.logback:logback-classic:1.4.12'
+
     implementation group: 'org.springframework.statemachine', name: 'spring-statemachine-samples-common', version: '4.0.0'
 
 }

@@ -27,7 +27,7 @@ public class GuardsV3 {
     public static Guard<StateV3, EventV3> isAbleToComposeSelf() {
         return context -> {
             Programmer programmer = context.getExtendedState().get(Constants.PROGRAMMER, Programmer.class);
-            return programmer.isStressed();
+            return !programmer.isStressed();
         };
     }
 

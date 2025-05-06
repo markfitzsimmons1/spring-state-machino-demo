@@ -61,25 +61,21 @@ public class ProgrammerStateService {
     public void finishedCodingV3(Programmer programmer) {
         ProgrammerStateMachine<EventV3> machine = stateMachineFactoryV3.createMachine(programmer, null);
         machine.sendEvent(EventV3.CODE_WRITING_FINISHED);
-        programmerRepository.save(programmer);
     }
 
     public void finishedCodeReviewV3(Programmer programmer, Programmer reviewer) {
         ProgrammerStateMachine<EventV3> machine = stateMachineFactoryV3.createMachine(programmer, reviewer);
         machine.sendEvent(EventV3.CODE_REVIEW_FINISHED);
-        programmerRepository.save(programmer);
     }
 
-    public void attemptToComposeSelf(Programmer programmer) {
+    public void attemptToComposeSelfV3(Programmer programmer) {
         ProgrammerStateMachine<EventV3> machine = stateMachineFactoryV3.createMachine(programmer, null);
         machine.sendEvent(EventV3.ATTEMPT_TO_COMPOSE_YOURSELF);
-        programmerRepository.save(programmer);
     }
 
-    public void pickUpNewTicket(Programmer programmer) {
+    public void pickUpNewTicketV3(Programmer programmer) {
         ProgrammerStateMachine<EventV3> machine = stateMachineFactoryV3.createMachine(programmer, null);
         machine.sendEvent(EventV3.PICKED_UP_NEW_TICKET);
-        programmerRepository.save(programmer);
     }
 
 }
