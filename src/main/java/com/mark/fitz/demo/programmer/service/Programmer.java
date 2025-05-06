@@ -26,8 +26,6 @@ public class Programmer {
 
     private boolean competent;
 
-    private boolean nice;
-
     private State state;
 
     public boolean canWriteGoodCode() {
